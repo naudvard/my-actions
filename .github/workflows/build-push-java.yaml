@@ -1,0 +1,39 @@
+name: Build and push Java
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Java version
+        id: java-version
+        uses: mavrosxristoforos/get-xml-info@2.0
+        with:
+          xml-file: pom.xml
+          xpath: /project/properties/java.version
+
+      -  name: Get project name
+         id: project-name
+         uses: mavrosxristoforos/get-xml-info@2.0
+         with:
+           xml-file: pom.xml
+           xpath: /project/artifactId
+
+      - name: Build Kotlin
+        uses: naudvard/my-actions/.github/actions/action-build-kotlin@main
+        with:
+          java-version: ${{ steps.java-version.outputs.info }}
+          project-name: ${{ steps.project-name.outputs.info }}
+
+      - name: Dockerize
+        uses: naudvard/my-actions/.github/actions/action-dockerize@main
+        with:
+          name: ${{ steps.project-name.outputs.info }}
+          version: ${{ steps.java-version.outputs.info }}
