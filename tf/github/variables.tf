@@ -1,5 +1,13 @@
 locals {
   repos = {
+    "test-tf" = {
+      name : "test-tf",
+      description : "Test Terraform",
+      visibility : "private",
+      branches : ["main"],
+      main : "main",
+      review_count : 0,
+    },
     "pignouf-games" = {
       name : "pignouf-games",
       description : "Pignouf Games",

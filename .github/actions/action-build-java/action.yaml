@@ -1,0 +1,23 @@
+name: Build JAR app
+description: Build Java or Kotlin app using Maven
+
+inputs:
+  java-version:
+    description: Java version to build the project
+    required: true
+  file-name:
+    description: Name of the built JAR
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+        architecture: arm64
+
+    - name: Build
+      run: mvn -B package --file pom.xml -DfinalName=${{ inputs.file-name }}
