@@ -15,14 +15,12 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: "Install JQ"
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y jq
+    - name: "Make sync.sh executable"
+      run: chmod +x .github/actions/action-sync-repositories/sync.sh
       shell: bash
 
     - name: "Sync repositories"
       env:
         PAT: ${{ inputs.pat }}
-      run: "./.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}"
+      run: ./.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}
       shell: bash

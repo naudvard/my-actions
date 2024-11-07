@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Git
+        uses: naudvard/my-actions/.github/actions/action-setup-git@main
+
       - name: Sync
         uses: naudvard/my-actions/.github/actions/action-sync-repositories@main
         with:
