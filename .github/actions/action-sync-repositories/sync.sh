@@ -12,8 +12,6 @@ function cloneRepo() {
 }
 
 function sync() {
-    cloneRepo "$source" # clone the source repository
-
     jq -c '.[]' "$source/$syncJsonPath" | while read -r repo; do
       repo_name=$(echo "$repo" | jq -r '.repository')
       cloneRepo "$repo_name" # clone the destination repository
@@ -31,12 +29,10 @@ function sync() {
       # Remove the repository folder
       rm -rf "$repo_name"
     done
-
-    # Remove the source repository folder
-    rm -rf "$source"
 }
 
 source="$1"
 syncJsonPath="$2"
 
+cd ../ || exit
 sync
