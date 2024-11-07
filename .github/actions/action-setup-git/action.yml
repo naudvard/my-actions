@@ -8,3 +8,4 @@ runs:
       run: |
         git config --global user.email "ci@nathanaudvard.fr"
         git config --global user.name "CI"
+      shell: bash
