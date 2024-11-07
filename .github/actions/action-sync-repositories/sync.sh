@@ -3,7 +3,7 @@
 function checkAndPush() {
     cd "$1" || exit
     git add .
-    git diff-index --quiet HEAD || git commit -m "ci: Sync workflows" && git push origin ci/sync
+    git diff-index --quiet HEAD || (git commit -m "ci: Sync workflows" && git push origin ci/sync)
     cd ../
 }
 
@@ -23,7 +23,7 @@ function sync() {
         to=$(echo "$sync" | jq -r '.to')
 
         # Copy the files from the source to the destination
-        cp -f "$source/$from" "$repo_name/$to"
+        cp -rf "$source/$from" "$repo_name/$to"
       done
 
       # Push the changes to ci/sync branch
