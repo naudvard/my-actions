@@ -33,6 +33,10 @@ function sync() {
 
 source="$1"
 syncJsonPath="$2"
-
+echo "$PWD"
+echo "$(ls)"
 cd ../ || exit
+echo "$PWD"
+echo "$(ls)"
+
 sync
