@@ -24,5 +24,6 @@ runs:
     - name: "Sync repositories"
       env:
         PAT: ${{ inputs.pat }}
-      run: "./.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}"
+      run: |
+        reference/.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}
       shell: bash
