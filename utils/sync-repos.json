@@ -1,0 +1,11 @@
+[
+  {
+    "repository": "test-tf",
+    "sync": [
+      {
+        "from": ".github/workflows/build-push-java.yaml",
+        "to": ".github/workflows/build-push-java.yaml"
+      }
+    ]
+  }
+]
