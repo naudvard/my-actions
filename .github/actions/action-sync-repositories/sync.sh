@@ -2,13 +2,9 @@
 
 function checkAndPush() {
     cd "$1" || exit
-    echo "Checking for changes in $1"
-    echo "$(ls)"
     git add .
     git diff-index --quiet HEAD || (git commit -m "ci: Sync workflows" && git push origin ci/sync)
     cd ../
-    echo "back"
-    echo "$(ls)"
 }
 
 function cloneRepo() {
@@ -20,10 +16,7 @@ function sync() {
       repo_name=$(echo "$repo" | jq -r '.repository')
       cloneRepo "$repo_name" # clone the destination repository
 
-      echo "cloning $repo_name"
-      echo "$(ls)"
-
-      echo "$repo" | jq -r '.sync' | while read -r sync; do
+      echo "$repo" | jq -c '.sync[]' | while read -r sync; do
         from=$(echo "$sync" | jq -r '.from')
         to=$(echo "$sync" | jq -r '.to')
 
@@ -40,5 +33,6 @@ function sync() {
 
 source="$1"
 syncJsonPath="$2"
+
 cd ../ || exit
 sync
