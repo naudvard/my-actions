@@ -11,6 +11,11 @@ function cloneRepo() {
     git clone "https://$PAT@github.com/naudvard/$1.git"
 }
 
+function copyFile() {
+  mkdir -p "$(dirname "$2")"
+  cp -rf "$1" "$2"
+}
+
 function sync() {
     jq -c '.[]' "$source/$syncJsonPath" | while read -r repo; do
       repo_name=$(echo "$repo" | jq -r '.repository')
@@ -20,8 +25,7 @@ function sync() {
         from=$(echo "$sync" | jq -r '.from')
         to=$(echo "$sync" | jq -r '.to')
 
-        # Copy the files from the source to the destination
-        cp -rf "$source/$from" "$repo_name/$to"
+        copyFile "$source/$from" "$repo_name/$to"
       done
 
       # Push the changes to ci/sync branch
