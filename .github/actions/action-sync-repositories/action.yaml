@@ -15,8 +15,12 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: "Make sync.sh executable"
+      run: chmod +x .github/actions/action-sync-repositories/sync.sh
+      shell: bash
+
     - name: "Sync repositories"
       env:
         PAT: ${{ inputs.pat }}
-      run: reference/.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}
+      run: ./.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}
       shell: bash
