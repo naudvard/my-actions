@@ -1,0 +1,14 @@
+name: Sync repositories
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync
+        uses: naudvard/my-actions/.github/actions/action-sync-repositories@main
+        with:
+          source: "my-actions"
+          json: "utils/sync-repos.json"
+          pat: ${{ secrets.PAT }}

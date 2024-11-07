@@ -27,10 +27,10 @@ jobs:
            xpath: /project/artifactId
 
       - name: Build Kotlin
-        uses: naudvard/my-actions/.github/actions/action-build-kotlin@main
+        uses: naudvard/my-actions/.github/actions/action-build-java@main
         with:
           java-version: ${{ steps.java-version.outputs.info }}
-          project-name: ${{ steps.project-name.outputs.info }}
+          file-name: ${{ steps.project-name.outputs.info }}
 
       - name: Dockerize
         uses: naudvard/my-actions/.github/actions/action-dockerize@main

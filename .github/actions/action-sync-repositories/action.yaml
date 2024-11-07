@@ -1,0 +1,28 @@
+name: Sync
+description: Sync repositories based on utils/sync-repos.json
+
+inputs:
+  source:
+    description: "Source repository"
+    required: true
+  json:
+    description: "Path to the JSON file"
+    required: true
+  pat:
+    description: "Personal access token"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: "Install JQ"
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq
+      shell: bash
+
+    - name: "Sync repositories"
+      env:
+        PAT: ${{ inputs.pat }}
+      run: "./.github/actions/action-sync-repositories/sync.sh ${{ inputs.source }} ${{ inputs.json }} ${{ inputs.pat }}"
+      shell: bash
