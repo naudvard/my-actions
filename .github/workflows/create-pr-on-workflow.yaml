@@ -1,0 +1,33 @@
+name: Create PR on workflow
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: "Branch to merge"
+        required: true
+        type: string
+      title:
+        description: "Title of the pull request"
+        required: true
+        type: string
+      body:
+        description: "Body of the pull request"
+        required: true
+        type: string
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create PR
+        uses: naudvard/my-actions/.github/actions/action-create-pr@main
+        with:
+          base-branch: main
+          to-merge-branch: ${{ inputs.branch }}
+          title: ${{ inputs.title }}
+          body: ${{ inputs.body }}
+          pat: ${{ secrets.PAT }}
