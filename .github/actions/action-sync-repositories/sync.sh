@@ -4,7 +4,7 @@ set -e
 function checkout() {
   if [ "$(git branch -a | grep -c 'ci/sync')" -ge 1 ] ; then
     echo "Branch ci/sync already exists, deleting"
-    git branch -D ci/sync
+    git branch -dr origin/ci/sync
     echo "Creating branch ci/sync"
     git checkout ci/sync
   else
