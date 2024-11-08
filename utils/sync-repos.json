@@ -9,6 +9,10 @@
       {
         "from": ".github/workflows/create-pr-on-workflow.yaml",
         "to": ".github/workflows/create-pr-on-workflow.yaml"
+      },
+      {
+        "from": ".github/workflows/feur.yaml",
+        "to": ".github/workflows/feur.yaml"
       }
     ]
   }
