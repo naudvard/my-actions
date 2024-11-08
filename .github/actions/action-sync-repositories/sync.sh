@@ -1,19 +1,20 @@
 #!/bin/bash
 set -e
 
-function deleteExisting() {
-  git ls-remote --heads origin refs/heads/ci/sync || git push origin -d ci/sync
+function checkout() {
+  git branch -a | grep "ci/sync" && git checkout ci/sync || git checkout -b ci/sync
 }
 
 function push() {
-    git checkout -b ci/sync && git commit -m "ci: Sync workflows" && git push origin ci/sync
+    git commit -m "ci: Sync workflows" && git push origin ci/sync
 }
 
-function checkAndPush() {
+function checkoutAndPush() {
     cd "$1" || exit
 
+    checkout
     git add .
-    git diff-index --quiet HEAD || deleteExisting && push
+    git diff-index --quiet HEAD || push
     cd ../
 }
 
@@ -39,7 +40,7 @@ function sync() {
       done
 
       # Push the changes to ci/sync branch
-      checkAndPush "$repo_name"
+      checkoutAndPush "$repo_name"
       # Remove the repository folder
       rm -rf "$repo_name"
     done

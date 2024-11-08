@@ -13,11 +13,11 @@ jobs:
         uses: naudvard/my-actions/.github/actions/action-setup-git@main
 
       - name: Sync
-        uses: naudvard/my-actions/.github/actions/action-sync-repositories@main
+        uses: naudvard/my-actions/.github/actions/action-sync-repositories@fix/sync
         with:
           source: "my-actions"
           json: "utils/sync-repos.json"
           pat: ${{ secrets.PAT }}
           branch: "ci"
-          title "ci: Sync workflows with my-actions"
+          title: "ci: Sync workflows with my-actions"
           body: "Sync workflows with my-actions"
