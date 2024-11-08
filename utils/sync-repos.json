@@ -5,6 +5,10 @@
       {
         "from": ".github/workflows/build-push-java.yaml",
         "to": ".github/workflows/build-push-java.yaml"
+      },
+      {
+        "from": ".github/workflows/create-pr-on-workflow.yaml",
+        "to": ".github/workflows/create-pr-on-workflow.yaml"
       }
     ]
   }
