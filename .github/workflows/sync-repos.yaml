@@ -13,7 +13,7 @@ jobs:
         uses: naudvard/my-actions/.github/actions/action-setup-git@main
 
       - name: Sync
-        uses: naudvard/my-actions/.github/actions/action-sync-repositories@fix/sync
+        uses: naudvard/my-actions/.github/actions/action-sync-repositories@main
         with:
           source: "my-actions"
           json: "utils/sync-repos.json"
