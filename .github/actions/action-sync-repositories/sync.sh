@@ -1,9 +1,19 @@
 #!/bin/bash
+set -e
+
+function deleteExisting() {
+  git ls-remote --heads origin refs/heads/ci/sync || git push origin -d ci/sync
+}
+
+function push() {
+    git checkout -b ci/sync && git commit -m "ci: Sync workflows" && git push origin ci/sync
+}
 
 function checkAndPush() {
     cd "$1" || exit
+
     git add .
-    git diff-index --quiet HEAD || (git checkout -b ci/sync && git commit -m "ci: Sync workflows" && git push origin ci/sync)
+    git diff-index --quiet HEAD || deleteExisting && push
     cd ../
 }
 
