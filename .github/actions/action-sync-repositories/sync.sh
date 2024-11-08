@@ -1,20 +1,28 @@
 #!/bin/bash
 set -e
 
-function deleteExisting() {
-  git ls-remote --heads origin refs/heads/ci/sync || git push origin -d ci/sync
+function checkout() {
+  if [ "$(git branch -a | grep -c 'ci/sync')" -ge 1 ] ; then
+    echo "Branch ci/sync already exists, deleting"
+    git push -d origin ci/sync
+  fi
+  echo "Creating branch ci/sync"
+  git checkout -b ci/sync
 }
 
 function push() {
-    git checkout -b ci/sync && git commit -m "ci: Sync workflows" && git push origin ci/sync
+  echo "Pushing changes to the repository"
+  git commit -m "ci: Sync workflows"
+  git push origin ci/sync
 }
 
-function checkAndPush() {
-    cd "$1" || exit
+function checkoutAndPush() {
+  cd "$1" || exit
 
-    git add .
-    git diff-index --quiet HEAD || deleteExisting && push
-    cd ../
+  checkout
+  git add .
+  git diff-index --quiet HEAD || push
+  cd ../
 }
 
 function cloneRepo() {
@@ -29,7 +37,7 @@ function copyFile() {
 function sync() {
     jq -c '.[]' "$source/$syncJsonPath" | while read -r repo; do
       repo_name=$(echo "$repo" | jq -r '.repository')
-      cloneRepo "$repo_name" # clone the destination repository
+      cloneRepo "$repo_name"
 
       echo "$repo" | jq -c '.sync[]' | while read -r sync; do
         from=$(echo "$sync" | jq -r '.from')
@@ -38,9 +46,7 @@ function sync() {
         copyFile "$source/$from" "$repo_name/$to"
       done
 
-      # Push the changes to ci/sync branch
-      checkAndPush "$repo_name"
-      # Remove the repository folder
+      checkoutAndPush "$repo_name"
       rm -rf "$repo_name"
     done
 }
