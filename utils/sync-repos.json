@@ -16,8 +16,8 @@
     "repository": "marineraoul.fr",
     "sync": [
       {
-        "from": ".github/workflows/create-pr-on-push.yaml",
-        "to": ".github/workflows/create-pr-on-push.yaml"
+        "from": ".github/workflows/create-pr-on-create.yaml",
+        "to": ".github/workflows/create-pr-on-create.yaml"
       }
     ]
   }
