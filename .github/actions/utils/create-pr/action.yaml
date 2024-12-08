@@ -24,5 +24,5 @@ runs:
     - name: "Create pull request"
       env:
         GH_TOKEN: ${{ inputs.pat }}
-      run: gh pr create -B "${{inputs.base-branch}}" -H "${{inputs.to-merge-branch}}" --title "${{inputs.title}}" --body "${{inputs.body}}"
+      run: gh pr create -d -B "${{inputs.base-branch}}" -H "${{inputs.to-merge-branch}}" --title "${{inputs.title}}" --body "${{inputs.body}}"
       shell: bash

@@ -14,7 +14,7 @@ jobs:
         uses: naudvard/my-actions/.github/actions/utils/setup-git@main
 
       - name: Create PR
-        uses: naudvard/my-actions/.github/actions/utils/create-pr@fix/create-pr
+        uses: naudvard/my-actions/.github/actions/utils/create-pr@main
         with:
           base-branch: "main"
           to-merge-branch: "${{ github.head_ref }}"
