@@ -16,8 +16,8 @@ jobs:
       - name: Create PR
         uses: naudvard/my-actions/.github/actions/action-create-pr@main
         with:
-          base-branch: main
-          to-merge-branch: ${{ github.head_ref }}
-          title: ${{ github.event.head_commit.message }}
-          body: Automatic PR creation
+          base-branch: "main"
+          to-merge-branch: "${{ github.head_ref }}"
+          title: "${{ github.event.head_commit.message }}"
+          body: "Automatic PR creation"
           pat: ${{ secrets.PAT }}
