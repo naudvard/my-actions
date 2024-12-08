@@ -1,7 +1,7 @@
 name: Create PR on push
 
 on:
-  push
+  create
 
 jobs:
   create-pr:
