@@ -10,10 +10,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup Git
-        uses: naudvard/my-actions/.github/actions/action-setup-git@main
+        uses: naudvard/my-actions/.github/actions/utils/setup-git@main
 
       - name: Sync
-        uses: naudvard/my-actions/.github/actions/action-sync-repositories@main
+        uses: naudvard/my-actions/.github/actions/sync-repositories@main
         with:
           source: "my-actions"
           json: "utils/sync-repos.json"

@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create PR
-        uses: naudvard/my-actions/.github/actions/action-create-pr@main
+        uses: naudvard/my-actions/.github/actions/utils/create-pr@main
         with:
           base-branch: main
           to-merge-branch: ${{ inputs.branch }}

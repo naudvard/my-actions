@@ -48,5 +48,13 @@ locals {
       main : "main",
       review_count : 1,
     },
+    "site-marineraoul" = {
+      name : "marineraoul.fr",
+      description : "Public website for Marine Audvard (Raoul)",
+      visibility : "public",
+      branches : ["main"],
+      main : "main",
+      review_count : 0,
+    },
   }
 }

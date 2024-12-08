@@ -1,0 +1,23 @@
+name: Create PR on push
+
+on:
+  push
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Git
+        uses: naudvard/my-actions/.github/actions/utils/setup-git@main
+
+      - name: Create PR
+        uses: naudvard/my-actions/.github/actions/utils/create-pr@main
+        with:
+          base-branch: "main"
+          to-merge-branch: "${{ github.head_ref }}"
+          title: "${{ github.event.head_commit.message }}"
+          body: "Automatic PR creation"
+          pat: ${{ secrets.PAT }}
