@@ -1,10 +1,8 @@
 name: Build and push Java
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    types: [opened, synchronize]
 
 jobs:
   build-and-push:
@@ -27,13 +25,13 @@ jobs:
            xpath: /project/artifactId
 
       - name: Build Kotlin
-        uses: naudvard/my-actions/.github/actions/action-build-java@main
+        uses: naudvard/my-actions/.github/actions/build/java@main
         with:
           java-version: ${{ steps.java-version.outputs.info }}
           file-name: ${{ steps.project-name.outputs.info }}
 
       - name: Dockerize
-        uses: naudvard/my-actions/.github/actions/action-dockerize@main
+        uses: naudvard/my-actions/.github/actions/dockerize@main
         with:
           name: ${{ steps.project-name.outputs.info }}
           version: ${{ steps.java-version.outputs.info }}
