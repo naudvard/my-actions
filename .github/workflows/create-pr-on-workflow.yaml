@@ -13,7 +13,8 @@ on:
         type: string
       body:
         description: "Body of the pull request"
-        required: true
+        default: "Automatic PR creation"
+        required: false
         type: string
 
 jobs:

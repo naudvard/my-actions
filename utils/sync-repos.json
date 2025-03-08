@@ -20,5 +20,14 @@
         "to": ".github/workflows/create-pr-on-create.yaml"
       }
     ]
+  },
+  {
+    "repostiory": "pignouf-games",
+    "sync": [
+      {
+        "from": ".github/workflows/create-pr-on-create.yaml",
+        "to": ".github/workflows/create-pr-on-create.yaml"
+      }
+    ]
   }
 ]
