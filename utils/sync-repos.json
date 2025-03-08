@@ -22,7 +22,7 @@
     ]
   },
   {
-    "repostiory": "pignouf-games",
+    "repository": "pignouf-games",
     "sync": [
       {
         "from": ".github/workflows/create-pr-on-create.yaml",
