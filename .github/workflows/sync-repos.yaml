@@ -19,5 +19,4 @@ jobs:
           json: "utils/sync-repos.json"
           pat: ${{ secrets.PAT }}
           branch: "ci"
-          title: "ci: Sync workflows with my-actions"
           body: "Sync workflows with my-actions"
