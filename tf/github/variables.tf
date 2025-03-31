@@ -11,10 +11,10 @@ locals {
     "pignouf-games" = {
       name : "pignouf-games",
       description : "Pignouf Games",
-      visibility : "private",
+      visibility : "public",
       branches : ["main"],
       main : "main",
-      review_count : 1,
+      review_count : 0,
     },
     "MyLifeManager" = {
       name : "MyLifeManager",
@@ -56,5 +56,13 @@ locals {
       main : "main",
       review_count : 0,
     },
+    "imt--isola--kotlin-bot" = {
+      name : "imt--isola--kotlin-bot",
+      description : "Kotlin bot for the Codingame Isola",
+      visibility : "private",
+      branches : ["main"],
+      main : "main",
+      review_count : 0,
+    }
   }
 }

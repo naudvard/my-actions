@@ -24,7 +24,7 @@ jobs:
            xml-file: pom.xml
            xpath: /project/artifactId
 
-      - name: Build Kotlin
+      - name: Build Java
         uses: naudvard/my-actions/.github/actions/build/java@main
         with:
           java-version: ${{ steps.java-version.outputs.info }}
